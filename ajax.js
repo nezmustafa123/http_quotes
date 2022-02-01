@@ -8,6 +8,16 @@ function getQuotes(e) {
   https.onload = function () {
     if (this.status === 200) {
       console.log(this.responseText);
+      const response = JSON.parse(this.responseText);
+      let output = "";
+      response.forEach(function (quote) {
+        output += `
+        <li>Quote: ${quote.text}</li>
+        <li>Author: ${quote.autor}</li>
+        
+
+       `;
+      });
     }
   };
   https.send();
