@@ -12,7 +12,7 @@ function getQuotes(e) {
     https.onload = function () {
       if (this.status === 200) {
         console.log(JSON.parse(this.responseText));
-        const response = JSON.parse(this.responseText);
+        const response = randomise(JSON.parse(this.responseText));
         let output = "";
         // response.forEach(function (quote) {
         //   output += `
@@ -39,4 +39,25 @@ function getQuotes(e) {
     };
     https.send();
   }
+}
+
+//FUNCTION TO RANDOMISE QUOTES
+
+function randomise(quotes) {
+  let currentIndex = quotes.length;
+  let tempValue;
+  let randomIndex;
+  console.log(currentIndex);
+  //while elements exists in the array
+  while (currentIndex > 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    //decrease c1 by 1 because
+    currentIndex--;
+    //swap last element with current index
+
+    tempValue = quotes[currentIndex];
+    quotes[currentIndex] = quotes[randomIndex];
+    quotes[randomIndex] = tempValue;
+  }
+  return quotes;
 }
