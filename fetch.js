@@ -15,6 +15,20 @@ function getQuotes(e) {
       })
       .then(function (data) {
         console.log(JSON.stringify(data));
+
+        let output = "";
+
+        for (let i = 0; i < data.length; i++) {
+          if (i == number.value) {
+            break; //break out of the loop after certain iterations
+          }
+          output += `
+            <li>Quote: ${data[i].text}</li>
+            <li>Author: ${data[i].author}</li>
+            <hr>
+            `;
+        }
+        document.querySelector(".quotes").innerHTML = output;
       });
   }
 }
