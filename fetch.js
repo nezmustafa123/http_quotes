@@ -14,7 +14,9 @@ function getQuotes(e) {
         return response.json();
       })
       .then(function (data) {
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
+
+        data = randomise(data);
 
         let output = "";
 
@@ -31,4 +33,25 @@ function getQuotes(e) {
         document.querySelector(".quotes").innerHTML = output;
       });
   }
+}
+//FUNCTION TO RANDOMISE QUOTES
+
+function randomise(quotes) {
+  let currentIndex = quotes.length;
+  let tempValue;
+  let randomIndex;
+  console.log(currentIndex);
+  //while elements exists in the array
+  while (currentIndex > 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    //decrease c1 by 1 because of zero index
+    currentIndex--;
+    //swap last element with current index
+
+    tempValue = quotes[currentIndex];
+    quotes[currentIndex] = quotes[randomIndex];
+    console.log(quotes[randomIndex]);
+    quotes[randomIndex] = tempValue;
+  }
+  return quotes;
 }
